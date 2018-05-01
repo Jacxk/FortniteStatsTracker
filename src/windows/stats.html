@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fortnite Tracker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../themes/default.css"/>
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+</head>
+<body id="pe">
+<div style="width: 100%;height: 100%">
+    <div class="header">
+        <div style="display: inline-block;">
+            <h1 class="title">
+                <img id="image" src="../../assets/icons/png/icon.png" style="width: 80px;height: 80px;float: left">
+                <span>Fortnite Tracker</span>
+            </h1>
+        </div>
+        <div style="display: inline-block;padding-top: 2%;padding-bottom: 2%;float: right;">
+            <span style="color: white;font-size: 20px;"><b>Account: <span id="account"></span></b></span>
+            <button type="button" class="btn btn-light" style="background-color: white;" onclick="returnLogin()">Logout</button>
+        </div>
+    </div>
+    <div id="statsBlock" style="padding-top: 5%;padding-bottom: 5%">
+        <div style="text-align: center">
+            <h1 style="color: #761fa1">Updates in <span id="countDown">0</span></h1>
+        </div>
+        <div class="card text-white bg-dark mb-3" style="margin-left: 10%;margin-right: 10%">
+            <div class="card-header">LifeTime Stats</div>
+            <div class="card-body" style="float: left;display: inline-block;">
+                <div class="row justify-content-start">
+                    <div class="col-2">
+                        <span>Score</span>
+                        <h4 id="life6">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Kills</span>
+                        <h4 id="life10">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Deaths</span>
+                        <h4 id="lifedeaths">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Wins</span>
+                        <h4 id="life8">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Top 5</span>
+                        <h4 id="life1">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Top 25</span>
+                        <h4 id="life5">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>K/D</span>
+                        <h4 id="life11">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Matches</span>
+                        <h4 id="life7">0</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card text-white bg-primary mb-3" style="margin-left: 10%;margin-right: 10%">
+            <div class="card-header">Solo Stats</div>
+            <div class="card-body" style="float: left;display: inline-block;">
+                <div class="row justify-content-start">
+                    <div class="col-2">
+                        <span>Score</span>
+                        <h4 id="soloscore">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Kills</span>
+                        <h4 id="solokills">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Deaths</span>
+                        <h4 id="solodeaths">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Wins</span>
+                        <h4 id="solotop1">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Top 10</span>
+                        <h4 id="solotop10">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Top 25</span>
+                        <h4 id="solotop25">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>K/D</span>
+                        <h4 id="solokd">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Kills Per Match</span>
+                        <h4 id="solokpg">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Score per Match</span>
+                        <h4 id="soloscorePerMatch">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Matches</span>
+                        <h4 id="solomatches">0</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card text-white bg-success mb-3" style="margin-left: 10%;margin-right: 10%">
+            <div class="card-header">Duo Stats</div>
+            <div class="card-body" style="float: left;display: inline-block;">
+                <div class="row justify-content-start">
+                    <div class="col-2">
+                        <span>Score</span>
+                        <h4 id="duoscore">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Kills</span>
+                        <h4 id="duokills">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Deaths</span>
+                        <h4 id="duodeaths">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Wins</span>
+                        <h4 id="duotop1">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>top10</span>
+                        <h4 id="duotop10">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Top 25</span>
+                        <h4 id="duotop25">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>K/D</span>
+                        <h4 id="duokd">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Kills Per Match</span>
+                        <h4 id="duokpg">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Score per Match</span>
+                        <h4 id="duoscorePerMatch">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Matches</span>
+                        <h4 id="duomatches">0</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card text-white bg-danger mb-3" style="margin-left: 10%;margin-right: 10%">
+            <div class="card-header">Squad Stats</div>
+            <div class="card-body" style="float: left;display: inline-block;">
+                <div class="row justify-content-start">
+                    <div class="col-2">
+                        <span>Score</span>
+                        <h4 id="squadscore">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Kills</span>
+                        <h4 id="squadkills">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Deaths</span>
+                        <h4 id="squaddeaths">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Wins</span>
+                        <h4 id="squadtop1">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Top 10</span>
+                        <h4 id="squadtop10">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Top 25</span>
+                        <h4 id="squadtop25">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>K/D</span>
+                        <h4 id="squadkd">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Kills Per Match</span>
+                        <h4 id="squadkpg">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Score per Match</span>
+                        <h4 id="squadscorePerMatch">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Matches</span>
+                        <h4 id="squadmatches">0</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../scripts/fortniteApi.js"></script>
+<script>
+        document.getElementById('image').ondragstart = () => {return false;};
+</script>
+</body>
+</html>
