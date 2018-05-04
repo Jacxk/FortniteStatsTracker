@@ -1,4 +1,6 @@
 const statList = ["score", "kills", "deaths", "top1", "top10", "top25", "kd", "kpg", "scorePerMatch", "matches"];
+const lifeStatList = ["score", "kills", "deaths", "top1", "top5", "top25", "kd", "matches"];
+
 let time = 5 * 60000;
 
 function returnLogin() {
@@ -7,22 +9,33 @@ function returnLogin() {
 
 function getStats() {
 
-    const lifeTime = jsonData.lifeTimeStats;
-    const solo = jsonData.stats.p2;
-    const duo = jsonData.stats.p10;
-    const squad = jsonData.stats.p9;
+    const lifeTime = jsonData.lifeTime;
+    const solo = jsonData.solo;
+    const duo = jsonData.duo;
+    const squad = jsonData.squad;
 
-    getLifeStats(lifeTime);
+    lifeStatList.forEach(value => {
+        if (value === 'deaths') {
+            const lifekills = parseInt(lifeTime['kills']);
+            const lifekd = parseFloat(lifeTime['kd']);
+
+            document.getElementById('life' + value).innerHTML = Math.floor(lifekills / lifekd).toString();
+        }
+
+        document.getElementById('life' + value).innerHTML = lifeTime[value];
+    });
+
     statList.forEach(value => {
         if (value === 'deaths') {
-            const solokills = parseInt(solo['kills'].value);
-            const solokd = parseFloat(solo['kd'].value);
 
-            const duokills = parseInt(duo['kills'].value);
-            const duokd = parseFloat(duo['kd'].value);
+            const solokills = parseInt(solo['kills']);
+            const solokd = parseFloat(solo['kd']);
 
-            const squadkills = parseInt(squad['kills'].value);
-            const squadkd = parseFloat(squad['kd'].value);
+            const duokills = parseInt(duo['kills']);
+            const duokd = parseFloat(duo['kd']);
+
+            const squadkills = parseInt(squad['kills']);
+            const squadkd = parseFloat(squad['kd']);
 
             document.getElementById('solo' + value).innerHTML = Math.floor(solokills / solokd).toString();
             document.getElementById('duo' + value).innerHTML = Math.floor(duokills / duokd).toString();
@@ -30,27 +43,12 @@ function getStats() {
 
             return;
         }
-        document.getElementById('solo' + value).innerHTML = solo[value].displayValue;
-        document.getElementById('duo' + value).innerHTML = duo[value].displayValue;
-        document.getElementById('squad' + value).innerHTML = squad[value].displayValue;
+        document.getElementById('solo' + value).innerHTML = solo[value];
+        document.getElementById('duo' + value).innerHTML = duo[value];
+        document.getElementById('squad' + value).innerHTML = squad[value];
     });
 
     document.getElementById('account').innerHTML = username.value;
-}
-
-function getLifeStats(lifeTime) {
-    const stats = [6, 10, 0, 8, 1, 5, 11, 7];
-
-    stats.forEach(value => {
-        if (value === 0) {
-            const kills = parseInt(lifeTime[10].value);
-            const kd = parseFloat(lifeTime[11].value);
-
-            document.getElementById('lifedeaths').innerHTML = Math.floor(kills / kd).toString();
-            return;
-        }
-        document.getElementById('life' + value).innerHTML = lifeTime[value].value;
-    });
 }
 
 function getTimeLeft() {

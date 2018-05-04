@@ -2,7 +2,6 @@ document.getElementById('image').ondragstart = function () {
     return false;
 };
 
-const tokens = require('../../tokens.json');
 const fs = require('fs');
 const request = require('request');
 const $ = require('jquery');
@@ -24,7 +23,6 @@ function searchStats() {
         data.platform = platform.value;
     }
 
-    //ipcRenderer.send('login', [platform.value, username.value]);
     $("#body").load("stats.html");
 }
 
@@ -47,10 +45,11 @@ function search(e) {
 
     let options = {
         method: 'GET',
-        url: `https://api.fortnitetracker.com/v1/profile/${platform.value.toLowerCase()}/${data.remember ? data.username : username.value}`,
+        url: `http://localhost:8081/fortnite/v1/p=${platform.value.toLowerCase()}&u=${data.remember ? data.username : username.value}`,
         headers: {
             'User-Agent': 'nodejs request',
-            'TRN-Api-Key': tokens.apiKey //To get an api key go to https://fortnitetracker.com/site-api
+            'Stats-Api-Key': 'Y.aOity-Uguij2m.G*ij-goAm80m10oY',
+            'Own-Api-Key': ''
         }
     };
 
@@ -62,20 +61,10 @@ function search(e) {
             }
             if (!data) return false;
 
-            if (data.toString().includes('<title>Error</title>')) {
-                sendAlert('Sorry, an error occurred while processing your request.');
-                return false;
-            }
-
             jsonData = JSON.parse(data);
 
             if (jsonData.error) {
                 sendAlert(jsonData.error);
-                return false;
-            }
-
-            if (jsonData.message) {
-                sendAlert(jsonData.message);
                 return false;
             }
 
