@@ -8,6 +8,8 @@ let isOpen = false;
 function openNav() {
     if (!isOpen) {
         document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("header").style.opacity = "0.5";
+        document.getElementById("mainBlock").style.opacity = "0.5";
         isOpen = true
     } else {
         closeNav();
@@ -17,6 +19,8 @@ function openNav() {
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("header").style.opacity = "1";
+    document.getElementById("mainBlock").style.opacity = "1";
     isOpen = false
 }
 
