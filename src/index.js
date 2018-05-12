@@ -104,6 +104,7 @@ async function createMissingFiles() {
     if (!fs.existsSync('./src/data.json')) {
         console.log('Data file does not exist, creating it...');
         await fs.writeFile('./src/data.json', JSON.stringify({
+            "started": true,
             "login": {
                 "username": null,
                 "remember": false,
@@ -122,3 +123,14 @@ async function createMissingFiles() {
         });
     }
 }
+
+app.on('before-quit', () => {
+
+    const data = JSON.parse(fs.readFileSync("./src/data.json", "utf8"));
+
+    data.started = false;
+
+    fs.writeFile('./src/data.json', JSON.stringify(data, null, 2), (err) => {
+        if (err) console.log(err.stack)
+    });
+});

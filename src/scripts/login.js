@@ -24,10 +24,15 @@ function searchStats() {
     $("#body").load("stats.html");
 }
 
-if (data.remember) {
+username.value = data.login.username;
+platform.value = data.login.platform;
+
+if (data.login.remember) {
     remember.checked = true;
-    username.value = data.login.username;
-    platform.value = data.login.platform;
+    if (!data.started) {
+        data.started = true;
+        search()
+    }
 }
 
 function onClick() {
@@ -37,7 +42,7 @@ function onClick() {
 }
 
 function search(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     stats.sendStatsFromServer(username.value, platform.value, data.login).then(data => {
         jsonData = data;
         searchStats();
