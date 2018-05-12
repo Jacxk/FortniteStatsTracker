@@ -16,43 +16,46 @@
         <br>
         <a href="javascript:openSource()">SourceCode</a>
     </div>
-    <div class="header">
-        <span style="font-size:30px;cursor:pointer;color: white;float: right;" onclick="openNav()">&#9776;</span>
-        <div style="display: inline-block;">
-            <h1 class="title">
-                <img id="image" src="../../assets/icons/png/icon.png" style="width: 80px;height: 80px;float: left">
-                <span>Fortnite Tracker</span>
-            </h1>
+    <div id="header" class="header">
+        <h1 class="title" style="display: inline-block;">
+            <img id="image" src="../../assets/icons/png/transparent-icon.png"
+                 style="width: 80px;height: 80px;float: left">
+            <span>Fortnite Tracker</span>
+        </h1>
+        <div class="sidenavBtn">
+            <span onclick="openNav()">&#9776;</span>
         </div>
     </div>
-    <div id="sendAlert"></div>
-    <div style="margin: 10%;">
-        <form>
-            <div style="display: grid;justify-content: center;">
-                <h1 style="color: #761fa1;font-size: 100px;font-family: 'Burbank Big Cd Bk', Arial, sans-serif;text-align: center">
-                    Search</h1>
-                <div class="input-group mb-3">
-                    <input id="username" type="text" class="form-control" placeholder="Username"
-                           onkeyup="onClick()" aria-label="Username" aria-describedby="basic-addon1" value="" style="max-width: 20rem;">
-                    <div class="input-group-append" style="">
-                        <button class="btn btn-primary loginbtn">Login</button>
-                    </div>
+    <div id="mainBlock">
+        <div id="sendAlert"></div>
+        <div style="margin: 10%;">
+            <form>
+                <div style="display: grid;justify-content: center;">
+                    <h1 class="loginTitle">Search</h1>
+                    <form style="width: 40%;margin: 0 auto" method="post" action="settings.html">
+                        <div class="inputField">
+                            <input id="username" type="text" onkeyup="onClick()" class="inputText" placeholder="Username" style="width: 100%">
+                        </div>
+                        <div class="inputField">
+                            <div class="inputField" style="display: inline-block;padding-right: 25%">
+                                <button class="btn btn-outline-light" type="submit" id="loginBtn">Login</button>
+                            </div>
+                            <div class="inputField custom-control custom-checkbox my-1 mr-sm-2" style="display: inline-block">
+                                <input class="custom-control-input" type="checkbox" id="rememberInput" onclick="onClick()">
+                                <label class="custom-control-label" for="rememberInput" style="color: white">Stay logged</label>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="col-auto my-1">
-                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                        <input type="checkbox" class="custom-control-input" id="customControlInline" onclick="onClick()">
-                        <label class="custom-control-label" for="customControlInline">Remember username</label>
-                    </div>
+                <div class="col-auto my-1" style="text-align: center">
+                    <select id="platform" class="custom-select mr-sm-2" title="" style="width: 10%;height: auto;">
+                        <option value="pc" selected>PC</option>
+                        <option value="psn">PS4</option>
+                        <option value="xb1">XBOX1</option>
+                    </select>
                 </div>
-            </div>
-            <div class="col-auto my-1" style="text-align: center">
-                <select id="platform" class="custom-select mr-sm-2" title="" style="width: 10%;height: auto;">
-                    <option value="pc" selected>PC</option>
-                    <option value="psn">PS4</option>
-                    <option value="xb1">XBOX1</option>
-                </select>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 <script src="../scripts/login.js"></script>
