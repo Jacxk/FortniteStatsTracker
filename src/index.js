@@ -8,6 +8,10 @@ let mainWindow = null;
 let splashScreen = null;
 let mainLoaded = false;
 
+require('update-electron-app')({
+    updateInterval: '1 hour'
+});
+
 app.on('ready', () => {
     createMissingFiles().then(() => {
         loadSplashWindow();
