@@ -1,11 +1,7 @@
-const statList = ["score", "kills", "deaths", "top1", "top10", "top25", "kd", "kpg", "scorePerMatch", "matches"];
+const statList = ["score", "kills", "deaths", "top1", "top5", "top25", "kd", "kpg", "scorePerMatch", "matches"];
 const lifeStatList = ["score", "kills", "deaths", "top1", "top5", "top25", "kd", "matches"];
 
 let time = 5 * 60000;
-
-function returnLogin() {
-    window.location = 'login.html';
-}
 
 function getStats() {
 
@@ -77,7 +73,3 @@ function millisToTimeString(ms) {
 
 getStats();
 setInterval(() => getTimeLeft(), 1000);
-
-fs.writeFile('./src/data.json', JSON.stringify(data, null, 2), (err) => {
-    if (err) console.log(err.stack)
-});
