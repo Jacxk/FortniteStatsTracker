@@ -5,9 +5,9 @@ const util = require('../scripts/utility.js');
 
 const data = JSON.parse(fs.readFileSync("./src/data.json", "utf8"));
 
-let username = $('#username');
-let platform = $('#platform');
-let remember = $('#rememberInput');
+let username = document.getElementById('username');
+let platform = document.getElementById('platform');
+let remember = document.getElementById('rememberInput');
 
 const form = document.querySelector('form');
 form.addEventListener('submit', search);
@@ -16,9 +16,9 @@ let jsonData = null;
 
 function searchStats() {
 
-    if (data.remember) {
-        data.username = username.value;
-        data.platform = platform.value;
+    if (data.login.remember) {
+        data.login.username = username.value;
+        data.login.platform = platform.value;
     }
 
     $("#body").load("stats.html");
@@ -26,24 +26,20 @@ function searchStats() {
 
 if (data.remember) {
     remember.checked = true;
-    username.value = data.username;
-    platform.value = data.platform;
+    username.value = data.login.username;
+    platform.value = data.login.platform;
 }
 
 function onClick() {
-    data.username = username.value;
-    data.remember = remember.checked;
-    data.platform = platform.value;
+    data.login.username = username.value;
+    data.login.remember = remember.checked;
+    data.login.platform = platform.value;
 }
 
 function search(e) {
     e.preventDefault();
-    stats.sendStatsFromServer(username.value, platform.value, data).then(data => {
+    stats.sendStatsFromServer(username.value, platform.value, data.login).then(data => {
         jsonData = data;
         searchStats();
     }).catch(err => util.sendAlert(err.toString()));
-
-    fs.writeFile('./src/data.json', JSON.stringify(data, null, 2), (err) => {
-        if (err) console.log(err.stack)
-    });
 }

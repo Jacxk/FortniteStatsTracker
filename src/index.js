@@ -104,9 +104,11 @@ async function createMissingFiles() {
     if (!fs.existsSync('./src/data.json')) {
         console.log('Data file does not exist, creating it...');
         await fs.writeFile('./src/data.json', JSON.stringify({
-            "username": null,
-            "remember": false,
-            "platform": "pc"
+            "login": {
+                "username": null,
+                "remember": false,
+                "platform": "pc"
+            }
         }, null, 2), (err) => {
             if (err) console.log('Data file error:' + err.stack)
         });
