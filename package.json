@@ -1,8 +1,8 @@
 {
   "name": "fortnitetracker",
   "productName": "Fortnite Tracker",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "A Fortnite Stats application to see your stats live",
   "main": "index.js",
   "scripts": {
     "start": "electron src/.",
@@ -20,5 +20,22 @@
     "jquery": "^3.3.1",
     "number-formatter": "^1.2.0",
     "request": "latest"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jacxk/FortniteStatsTracker.git"
+  },
+  "keywords": [
+    "Fortnite",
+    "stats",
+    "tracker",
+    "fortnite",
+    "stats",
+    "fornite",
+    "tracker"
+  ],
+  "bugs": {
+    "url": "https://github.com/Jacxk/FortniteStatsTracker/issues"
+  },
+  "homepage": "https://github.com/Jacxk/FortniteStatsTracker#readme"
 }
