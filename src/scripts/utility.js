@@ -38,3 +38,17 @@ function options() {
 function home() {
     $("#body").load("stats.html");
 }
+
+// Send Alert
+const $ = require('jquery');
+
+module.exports.sendAlert = (alert) => {
+    const html = `<div class="alert"><span class="closebtn" onclick="this.parentElement.style.display='none';">` +
+        `&times;</span>` + alert + `</div>`;
+
+    $('#sendAlert').html(html);
+
+    setTimeout(() => {
+        $('#sendAlert').html(null);
+    }, 5000);
+};
