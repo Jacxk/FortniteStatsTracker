@@ -9,6 +9,7 @@ let splashScreen = null;
 let mainLoaded = false;
 
 require('update-electron-app')({
+    repo: 'Jacxk/FortniteStatsTracker',
     updateInterval: '1 hour'
 });
 

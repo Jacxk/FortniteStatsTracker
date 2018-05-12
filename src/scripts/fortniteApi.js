@@ -73,7 +73,3 @@ function millisToTimeString(ms) {
 
 getStats();
 setInterval(() => getTimeLeft(), 1000);
-
-fs.writeFile('./src/data.json', JSON.stringify(data, null, 2), (err) => {
-    if (err) console.log(err.stack)
-});

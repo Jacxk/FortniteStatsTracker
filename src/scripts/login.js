@@ -39,6 +39,10 @@ function onClick() {
     data.login.username = username.value;
     data.login.remember = remember.checked;
     data.login.platform = platform.value;
+
+    fs.writeFile('./src/data.json', JSON.stringify(data, null, 2), (err) => {
+        if (err) console.log(err.stack)
+    });
 }
 
 function search(e) {
