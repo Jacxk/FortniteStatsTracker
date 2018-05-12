@@ -8,18 +8,25 @@
     <link rel="stylesheet" type="text/css" href="../themes/default.css"/>
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
 </head>
-<body id="pe">
+<body>
 <div style="width: 100%;height: 100%">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="javascript:closeNav()">Home</a>
+        <a href="#">Name: <span id="account"/></a>
+        <br>
+        <a href="javascript:options()">Options</a>
+        <a href="javascript:openSource()">SourceCode</a>
+        <br>
+        <a href="javascript:returnLogin()">Logout</a>
+    </div>
     <div class="header">
+        <span style="font-size:30px;cursor:pointer;color: white;float: right;" onclick="openNav()">&#9776;</span>
         <div style="display: inline-block;">
             <h1 class="title">
                 <img id="image" src="../../assets/icons/png/icon.png" style="width: 80px;height: 80px;float: left">
                 <span>Fortnite Tracker</span>
             </h1>
-        </div>
-        <div style="display: inline-block;padding-top: 2%;padding-bottom: 2%;float: right;">
-            <span style="color: white;font-size: 20px;"><b>Account: <span id="account"></span></b></span>
-            <button type="button" class="btn btn-light" style="background-color: white;" onclick="returnLogin()">Logout</button>
         </div>
     </div>
     <div id="statsBlock" style="padding-top: 5%;padding-bottom: 5%">
@@ -45,6 +52,10 @@
                     <div class="col-2">
                         <span>Wins</span>
                         <h4 id="lifetop1">0</h4>
+                    </div>
+                    <div class="col-2">
+                        <span>Top 3</span>
+                        <h4 id="lifetop3">0</h4>
                     </div>
                     <div class="col-2">
                         <span>Top 5</span>
@@ -86,8 +97,8 @@
                         <h4 id="solotop1">0</h4>
                     </div>
                     <div class="col-2">
-                        <span>Top 10</span>
-                        <h4 id="solotop10">0</h4>
+                        <span>Top 5s</span>
+                        <h4 id="solotop5">0</h4>
                     </div>
                     <div class="col-2">
                         <span>Top 25</span>
@@ -133,8 +144,8 @@
                         <h4 id="duotop1">0</h4>
                     </div>
                     <div class="col-2">
-                        <span>top10</span>
-                        <h4 id="duotop10">0</h4>
+                        <span>Top 5s</span>
+                        <h4 id="duotop5">0</h4>
                     </div>
                     <div class="col-2">
                         <span>Top 25</span>
@@ -180,8 +191,8 @@
                         <h4 id="squadtop1">0</h4>
                     </div>
                     <div class="col-2">
-                        <span>Top 10</span>
-                        <h4 id="squadtop10">0</h4>
+                        <span>Top 5s</span>
+                        <h4 id="squadtop5">0</h4>
                     </div>
                     <div class="col-2">
                         <span>Top 25</span>
@@ -208,10 +219,7 @@
         </div>
     </div>
 </div>
-
 <script src="../scripts/fortniteApi.js"></script>
-<script>
-        document.getElementById('image').ondragstart = () => {return false;};
-</script>
+<script src="../scripts/utility.js"></script>
 </body>
 </html>
