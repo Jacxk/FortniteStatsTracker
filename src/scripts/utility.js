@@ -3,7 +3,6 @@ document.getElementById('image').ondragstart = () => {
 };
 
 // Side menu
-
 let isOpen = false;
 
 function openNav() {
@@ -25,6 +24,15 @@ function openSource() {
     require('electron').shell.openExternal("https://github.com/Jacxk/FortniteStatsTracker")
 }
 
+$(document).mouseup((e) => {
+    if (!isOpen) return;
+    const container = $("#mySidenav");
+
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        closeNav();
+    }
+});
+
 // logout
 function returnLogin() {
     window.location = 'login.html';
@@ -40,8 +48,6 @@ function home() {
 }
 
 // Send Alert
-const $ = require('jquery');
-
 module.exports.sendAlert = (alert) => {
     const html = `<div class="alert"><span class="closebtn" onclick="this.parentElement.style.display='none';">` +
         `&times;</span>` + alert + `</div>`;
