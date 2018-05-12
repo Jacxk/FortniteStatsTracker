@@ -27,7 +27,7 @@ function loadSplashWindow() {
         transparent: true,
         frame: false,
         autoHideMenuBar: true,
-        icon: './assets/icons/win/icon.ico',
+        icon: './assets/icons/png/transparent-icon.png',
         titleBarStyle: 'hidden',
         movable: true
     });
@@ -47,7 +47,7 @@ function loadMainWindow() {
     mainWindow = new BrowserWindow({
         width: 1280,
         height: 720,
-        icon: './assets/icons/win/icon.ico',
+        icon: './assets/icons/png/transparent-icon.png',
         webPreferences: {devTools: true},
         show: false
     });
