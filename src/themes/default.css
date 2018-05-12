@@ -1,12 +1,12 @@
 .header {
-    background-color: #761fa1;
+    background-color: #2d2d2d;
     width: 100%;
-    padding: 5px 15px;
+    padding: 1% 10%;
+    box-shadow: -1px -16px 51px 15px rgba(0, 0, 0, 0.5);
 }
 
 .title {
     color: white;
-    transition: .45s;
     text-align: center;
     font-size: 65px;
     display: inline-block;
@@ -22,48 +22,28 @@
     font-size: 60px;
 }
 
-.search {
-    width: 300px;
-    height: 35px;
+.loginTitle {
+    color: white;
+    font-size: 100px;
+    font-family: 'Burbank Big Cd Bk', Arial, sans-serif;
+    text-align: center;
+}
+
+.inputText {
     background-color: transparent;
     border-color: transparent;
     border-bottom-color: gray;
-    transition: .5s;
-    color: #761fa1;
-    font-size: 20px;
-}
-
-.search:focus {
-    border-bottom-color: #761fa1;
-}
-
-.loginbtn {
-    background-color: #761fa1;
-    border: #761fa1;
+    transition: .45s;
     color: white;
+    font-size: 22px;
 }
 
-.loginbtn:focus, .loginbtn:hover {
-    background-color: #5e1a7f;
+.inputText:focus {
+    border-bottom-color: white;
 }
 
-@font-face {
-    font-family: "Burbank Big Cd Bk";
-    src: url("../font/Burbank Big Condensed Black.ttf");
-}
-
-body {
-
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-button, button:focus {
-    background-color: transparent;
-    border-color: transparent;
+.inputField {
+    padding-bottom: 5%;
 }
 
 .alert {
@@ -77,7 +57,6 @@ button, button:focus {
     margin-left: 25%;
 }
 
-/* The close button */
 .closebtn {
     margin-left: 15px;
     color: white;
@@ -86,12 +65,107 @@ button, button:focus {
     font-size: 22px;
     line-height: 20px;
     cursor: pointer;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.sidenavBtn {
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    display: inline-block;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    float: right;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+    box-shadow: 14px 2px 51px -19px rgba(0, 0, 0, 0.75);
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
     transition: 0.3s;
 }
 
-/* When moving the mouse over the close button */
-.closebtn:hover {
-    color: black;
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.card {
+    background-color: #2d2d2d;
+    border-radius: 7px;
+    box-shadow: -1px 3px 51px 15px rgba(0, 0, 0, 0.17);
+}
+
+.border-left-red {
+    border-left-color: #f44336;
+    border-left-width: 5px;
+}
+
+.border-left-blue {
+    border-left-color: #2196F3;
+    border-left-width: 5px;
+}
+
+.border-left-green {
+    border-left-color: #4CAF50;
+    border-left-width: 5px;
+}
+
+.border-left-yellow {
+    border-left-color: #FFC107;
+    border-left-width: 5px;
+}
+
+* {
+    transition: 0.4s;
+}
+
+@font-face {
+    font-family: "Burbank Big Cd Bk";
+    src: url("../font/Burbank Big Condensed Black.ttf");
+}
+
+input:focus, select:focus, textarea:focus, button:focus {
+    outline: none;
+}
+
+body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #1f1f1f;
+}
+
+button, button:focus {
+    background-color: transparent;
+    border-color: transparent;
 }
 
 ::-webkit-scrollbar {
@@ -99,9 +173,9 @@ button, button:focus {
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background-color: #414141;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #761fa1;
+    background-color: #2d2d2d;
 }
