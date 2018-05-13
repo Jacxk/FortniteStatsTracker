@@ -2,6 +2,7 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 const fs = require('fs');
+const DiscordRPC = require('discord-rpc');
 const {app, BrowserWindow, Menu} = electron;
 
 let mainWindow = null;
@@ -139,3 +140,35 @@ app.on('before-quit', () => {
         if (err) console.log(err.stack)
     });
 });
+const clientID = '445298809388400640';
+DiscordRPC.register(clientID);
+
+const rpc = new DiscordRPC.Client({transport: 'ipc'});
+const startTimestamp = new Date();
+
+async function setActivity() {
+    if (!rpc || !mainWindow)
+        return;
+
+    const data = JSON.parse(fs.readFileSync("./src/data.json", "utf8"));
+    const username = data.login.username;
+
+    rpc.setActivity({
+        details: `${!username ? 'Thinking about who to search' : `Watching ${username}${username.charAt(username.length - 1) === 's' ? "'" : "'s"} Stats`}`,
+        startTimestamp,
+        largeImageKey: 'logo_big',
+        largeImageText: 'Searching for: ' + username,
+        smallImageKey: 'logo_small',
+        smallImageText: 'Made by: Jacxk',
+        instance: false,
+    });
+}
+
+rpc.on('ready', () => {
+    setActivity().catch(err => console.log(err));
+    setInterval(() => {
+        setActivity().catch(err => console.log(err));
+    }, 15e3);
+});
+
+rpc.login(clientID).catch(console.error);
