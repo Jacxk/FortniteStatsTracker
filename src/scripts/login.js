@@ -47,8 +47,17 @@ function onClick() {
 
 function search(e) {
     if (e) e.preventDefault();
+
+    const htmlBefore = document.getElementById('searchDiv').innerHTML;
+    const fUsername = `${username.value}${username.value.charAt(username.value.length - 1) === 's' ? "'" : "'s"}`;
+
+    document.getElementById('searchDiv').innerHTML = `<div><img style="display:inline-block;margin: 0 auto;" src="../../assets/icons/loading.gif">` +
+        `<h1 style="display:inline-block;color: white;">Loading ${fUsername} stats...</h1></div>`;
     stats.sendStatsFromServer(username.value, platform.value, data.login).then(data => {
         jsonData = data;
         searchStats();
-    }).catch(err => util.sendAlert(err.toString()));
+    }).catch(err => {
+        util.sendAlert(err.toString());
+        document.getElementById('searchDiv').innerHTML = htmlBefore;
+    });
 }

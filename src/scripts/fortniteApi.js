@@ -50,7 +50,11 @@ function getStats() {
 function getTimeLeft() {
     if (time <= 0) {
         time = 5 * 60000;
-        getStats();
+        stats.sendStatsFromServer(username.value, platform.value, data.login).then(data => {
+            console.log('Updating Stats');
+            jsonData = data;
+            getStats();
+        }).catch(err => util.sendAlert(err.toString()));
     }
 
     time -= 1000;

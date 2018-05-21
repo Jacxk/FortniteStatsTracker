@@ -19,10 +19,11 @@ module.exports.sendStatsFromServer = (username, platform, data) => {
         try {
             request(options, (err, resp, data) => {
                 if (err) {
-                    console.log(err.toString());
+                    console.log(err);
+                    reject(err.toString());
                     return false;
                 }
-                if (!data) return false;
+                if (!data) return reject("No data found");
 
                 jsonData = JSON.parse(data);
 
