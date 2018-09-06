@@ -1,13 +1,13 @@
 {
-  "name": "fortnitestats",
-  "productName": "Fortnite Stats",
-  "version": "3.0.0",
+  "name": "fortnitetracker",
+  "productName": "Fortnite Tracker",
+  "version": "2.1.0",
   "description": "A Fortnite Stats application to see your stats live",
   "main": "src/index.js",
   "scripts": {
     "start": "electron .",
-    "package-win": "electron-packager . fortnitestats --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=\"Jack's Corp\" --version-string.FileDescription=CE --version-string.ProductName=\"Fortnite Stats\"",
-    "package-linux": "electron-packager . fortnitestats --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
+    "package-win": "electron-packager . fortnitetracker --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=\"Jack's Corp\" --version-string.FileDescription=CE --version-string.ProductName=\"Fortnite Tracker\"",
+    "package-linux": "electron-packager . fortnitetracker --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
   },
   "author": "By_Jack",
   "license": "ISC",
@@ -16,12 +16,11 @@
     "electron-packager": "^12.0.1"
   },
   "dependencies": {
-    "discord-rich-presence": "0.0.7",
+    "discord-rpc": "^3.0.0-beta.10",
     "express": "^4.16.3",
-    "form-data": "^2.3.2",
     "jquery": "^3.3.1",
-    "node-fetch": "latest",
     "number-formatter": "^1.2.0",
+    "request": "latest",
     "update-electron-app": "^1.1.2"
   },
   "repository": {
