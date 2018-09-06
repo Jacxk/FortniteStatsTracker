@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fortnite Tracker</title>
+    <style>
+        * {
+            -webkit-user-select: none;
+            cursor: default !important;
+            -webkit-user-drag: none;
+        }
+        body {
+            overflow: hidden;
+            margin: 0;
+            background: transparent;
+        }
+        #splash_container {
+            margin: 10px 20px;
+        }
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes increase {
+            from {
+                opacity: 0;
+                width: 0;
+                margin: 52px 40px;
+            }
+            to {
+                opacity: 1;
+                width: 100px;
+                margin: 15px -10px;
+            }
+        }
+        .draggable {
+            -webkit-app-region: drag;
+        }
+    </style>
+</head>
+<body class="draggable">
+<div id="splash_container">
+    <img src="../../assets/icons/png/loadIcon.gif">
+</div>
+</body>
+</html>
