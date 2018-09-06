@@ -1,0 +1,14 @@
+.patch-note-wrapper {
+    background-color: #2d2d2d;
+    border-radius: 5px;
+    padding: 2% 5%;
+    margin: 2% 3%;
+    transition: 0.1s;
+    cursor: pointer;
+    height: 100%;
+    border: 1px solid transparent;
+}
+
+.patch-note-wrapper:hover {
+    border: 1px solid #ef5350;
+}
