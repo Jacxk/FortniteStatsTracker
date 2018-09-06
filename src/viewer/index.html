@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../../assets/materialize/css/materialize.min.css"
+          media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../libraries/css/main_page.css"/>
+
+    <script>
+        const $ = require('jquery');
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        const errorObject = {error: false, message: ""};
+    </script>
+    <script src="../../assets/jquery/jquery.timeago.js" type="text/javascript"></script>
+
+    <meta charset="UTF-8">
+    <title>Fortnite Stats</title>
+</head>
+<body>
+<div id="login_window" toggleable>
+    <nav>
+        <div class="nav-wrapper">
+            <label class="brand-logo center">Fortnite Stats</label>
+        </div>
+    </nav>
+    <div class="row login-content-box">
+        <div class="col s12">
+            <div class="username">
+                <label for="username_input">Username</label>
+                <input id="username_input" type="text" class="white-text">
+            </div>
+            <div class="platforms">
+                <label class="platform">
+                    <input value="PC" class="with-gap" name="group1" type="radio" checked/>
+                    <span>PC</span>
+                </label>
+                <label class="platform">
+                    <input value="PS4" class="with-gap" name="group1" type="radio"/>
+                    <span>PS4</span>
+                </label>
+                <label class="platform">
+                    <input value="XB1" class="with-gap" name="group1" type="radio"/>
+                    <span>XBOX ONE</span>
+                </label>
+            </div>
+            <div class="login-btn">
+                <button id="login_btn" class="btn waves-effect waves-light red lighten-1">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main_window" style="display: none" toggleable>
+    <nav>
+        <div class="nav-wrapper">
+            <a class="brand-logo" style="margin-left: 20px;">Fortnite Stats</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li id="home_btn" class="active" data-window-id="home"><a href="#">Home</a></li>
+                <li id="stats_btn" data-window-id="player_stats"><a href="#">Stats</a></li>
+                <li id="logout_btn"><a href="#modal1">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content">
+        <div id="home" homeWindow>
+            <div class="row">
+                <div class="col s3">
+                    <ul class="navigator">
+                        <li class="navigator-btn navigator-btn-selected" data-home-content="news">News</li>
+                        <li class="navigator-btn" data-home-content="patch_notes">Patch Notes</li>
+                        <li class="navigator-btn" data-home-content="challenges">Challenges</li>
+                        <li class="navigator-btn" data-home-content="items_store">Item Store</li>
+                        <li class="navigator-btn" data-home-content="upcoming_items">Upcoming Items</li>
+                    </ul>
+                </div>
+                <div class="col s9 home-wrapper">
+                    <div id="news" class="col s12 home-contents">
+                        <div class="white-text center-align"><h3>News</h3></div>
+                    </div>
+                    <div class="col s12 center-align">
+                        <div id="patch_notes" class="row home-contents" style="margin: 0 auto">
+                            <div class="white-text center-align"><h3>Patch Notes</h3></div>
+                        </div>
+                    </div>
+                    <div id="challenges" class="col s12 home-contents">
+                        <div class="white-text center-align"><h3>Challenges</h3></div>
+                        <div>
+                        </div>
+                        <ul id="challenges_col" class="collapsible"></ul>
+                    </div>
+                    <div class="col s12">
+                        <div id="items_store" class="row home-contents" style="margin: 0 auto">
+                            <div class="white-text center-align"><h3>Items Store</h3></div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div id="upcoming_items" class="row home-contents" style="margin: 0 auto">
+                            <div class="white-text center-align"><h3>Upcoming Items</h3></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="player_stats" style="display: none" homeWindow>
+            <div class="stats-update">
+                <div class="progress">
+                    <div id="stats_update_bar" class="determinate" style="width: 0"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m12" id="stat_cards"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="loading_screen" class="loading" style="display: none">
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-red-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fixed-action-btn unselectable">
+    <a id="configuration" class="btn-floating btn-large red">
+        <i class="large material-icons">build</i>
+    </a>
+</div>
+<div id="config_modal" class="modal">
+    <div class="modal-content">
+        <h4>Configuration</h4>
+        <div class="row">
+            <div class="col s12 red-text lighten-1" id="settings_error">
+            </div>
+            <div class="col s11" data-config="apiKey">
+                <label for="api_key">Fortnite Api Key</label>
+                <input id="api_key" type="password">
+            </div>
+            <div class="col s1">
+                <i id="api_key_info" class="tooltipped material-icons" style="cursor: default" data-position="right">help</i>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col s6" data-config="refresh">
+                <label for="updateTime">Refresh Rate (time in minutes)</label>
+                <input id="updateTime" type="number" value="0">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col s12" data-config="reset">
+                <a id="reset_saved_data" class="btn red lighten-1">Reset all saved data</a>
+            </div>
+        </div>
+        <br>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-close waves-effect waves btn-flat">Close</button>
+    </div>
+</div>
+<div id="reset_data_modal" class="modal">
+    <div class="modal-content">
+        <h4>Reset all data?</h4>
+        <p>Are you sure you want to reset all the saved data such as: <i>username, api-key, challenges, etc.?</i></p>
+    </div>
+    <div class="modal-footer">
+        <button id="reset_data_no" class="modal-close waves-effect waves btn-flat red lighten-1 white-text">No</button>
+        <button id="reset_data_yes" class="modal-close waves-effect waves btn-flat green lighten-1 white-text">Yes
+        </button>
+    </div>
+</div>
+<div id="logout_modal" class="modal">
+    <div class="modal-content">
+        <h4>Logout?</h4>
+        <p>Are you sure you want to logout?</p>
+    </div>
+    <div class="modal-footer">
+        <button id="logout_no" class="modal-close waves-effect waves btn-flat red lighten-1 white-text">No</button>
+        <button id="logout_yes" class="modal-close waves-effect waves btn-flat green lighten-1 white-text">Yes</button>
+    </div>
+</div>
+<script>
+
+    const StatsEmbed = require('../libraries/classes/StatsEmbed');
+
+    const LifeTime = new StatsEmbed('LifeTime', 'lt_');
+    const Solo = new StatsEmbed('Solo', 'solo_');
+    const Duo = new StatsEmbed('Duo', 'duo_');
+    const Squad = new StatsEmbed('Squad', 'squad_');
+
+    LifeTime.addField('Score', '0', 'score').addField('Kills', '0', 'kills').addField('Deaths', '0', 'deaths')
+        .addField('Wins', '0', 'wins').addField('Top 5', '0', 'top5').addField('Top 25', '0', 'top25')
+        .addField('K/D Ratio', '0.0', 'kd').addField('Matches', '0', 'matches')
+        .setBorderColor('red').build("stat_cards");
+    Solo.addField('Score', '0', 'score').addField('Kills', '0', 'kills').addField('Deaths', '0', 'deaths')
+        .addField('Wins', '0', 'wins').addField('Top 5', '0', 'top5').addField('Top 25', '0', 'top25')
+        .addField('K/D Ratio', '0.0', 'kd').addField('Kills per Match', '0', 'kpg')
+        .addField('Matches', '0', 'matches').addField('Score Per Match', '0', 'scorePerMatch')
+        .setBorderColor('blue').build("stat_cards");
+    Duo.addField('Score', '0', 'score').addField('Kills', '0', 'kills').addField('Deaths', '0', 'deaths')
+        .addField('Wins', '0', 'wins').addField('Top 5', '0', 'top5').addField('Top 25', '0', 'top25')
+        .addField('K/D Ratio', '0.0', 'kd').addField('Kills per Match', '0', 'kpg')
+        .addField('Matches', '0', 'matches').addField('Score Per Match', '0', 'scorePerMatch')
+        .setBorderColor('green').build("stat_cards");
+    Squad.addField('Score', '0', 'score').addField('Kills', '0', 'kills').addField('Deaths', '0', 'deaths')
+        .addField('Wins', '0', 'wins').addField('Top 5', '0', 'top5').addField('Top 25', '0', 'top25')
+        .addField('K/D Ratio', '0.0', 'kd').addField('Kills per Match', '0', 'kpg').addField('Matches', '0', 'matches')
+        .addField('Score Per Match', '0', 'scorePerMatch').setBorderColor('yellow').build("stat_cards");
+
+</script>
+<script type="text/javascript" src="../libraries/classes/Configuration.js"></script>
+<script type="text/javascript" src="../libraries/fortnite/Fortnite.js"></script>
+<script type="text/javascript" src="../libraries/fortnite/FortniteStats.js"></script>
+<script type="text/javascript" src="../libraries/fortnite/News.js"></script>
+<script type="text/javascript" src="../libraries/fortnite/PatchNotes.js"></script>
+<script type="text/javascript" src="../libraries/fortnite/Challenges.js"></script>
+<script type="text/javascript" src="../libraries/fortnite/Store.js"></script>
+<script type="text/javascript" src="../libraries/fortnite/ItemsComing.js"></script>
+<script type="text/javascript" src="../libraries/fortnite/listeners.js"></script>
+<script type="text/javascript" src="../../assets/materialize/js/materialize.min.js"></script>
+</body>
+</html>
